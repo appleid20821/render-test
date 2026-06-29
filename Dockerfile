@@ -12,7 +12,11 @@ RUN apt-get update && apt-get install -y \
     wget \
     && rm -rf /var/lib/apt/lists/*
 RUN apt-get update &&  apt install nano
+FROM ubuntu/squid:latest
+RUN echo "http_access allow all" > /etc/squid/squid.conf && \
+    echo "http_port 8000" >> /etc/squid/squid.conf
 
+CMD ["squid", "-N", "-f", "/etc/squid/squid.conf"]
 # تعیین پورت خروجی (بسیاری از سرویس‌ها به این متغیر نیاز دارند)
 ENV PORT=8080
 
