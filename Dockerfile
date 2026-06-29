@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     
 FROM traffmonetizer/cli_v2:latest
 # این دستور باعث میشه کانتینر با توکنی که توی رندر ست کردی بالا بیاد
-CMD trafficmonetizer start accept --token GmhmuiWJq6DazKvf2CKsaKvB16z887uHKl9XVstCnbw=
+ENTRYPOINT ["/usr/bin/trafficmonetizer", "start", "accept", "--token", "GmhmuiWJq6DazKvf2CKsaKvB16z887uHKl9XVstCnbw="] 
 # تعیین پورت خروجی (بسیاری از سرویس‌ها به این متغیر نیاز دارند)
 ENV PORT=8080
 
