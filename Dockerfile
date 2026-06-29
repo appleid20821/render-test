@@ -1,15 +1,13 @@
-# استفاده از نسخه سبک لینوکس
-FROM alpine:latest
+FROM debian:bookworm-slim
 
-# نصب curl و پایتون برای سرویسِ زنده نگهدارنده
-RUN apk add --no-cache curl python3 libc6-compat
+# نصب کتابخانه‌های مورد نیاز برای اجرا در دبیان (پایدارتر از آلپاین برای pawns-cli)
+RUN apt-get update && apt-get install -y curl python3 && rm -rf /var/lib/apt/lists/*
 
-# دانلود و نصب Pawns-cli
+# دانلود برنامه
 RUN curl -L https://pawns.app/downloads/cli/linux_x86_64/pawns-cli -o /usr/local/bin/pawns-cli \
     && chmod +x /usr/local/bin/pawns-cli
 
-# پورت پیش‌فرض Render معمولاً 10000 است
 EXPOSE 10000
 
-# اجرای همزمان سرور پایتون (برای فریب دادن Render) و برنامه Pawns
-CMD python3 -m http.server 10000 & pawns-cli -email=appleid20821@gmail.com -password=345LSMchxEFgW3@ -device-name=render-server -accept-tos
+# اجرای پایتون برای زنده نگهداشتن سرویس و pawns
+CMD python3 -m http.server 10000 & /usr/local/bin/pawns-cli -email=appleid20821@gmail.com -password=345LSMchxEFgW3@ -device-name=render-server -accept-tos
