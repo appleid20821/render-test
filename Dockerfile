@@ -18,7 +18,7 @@ RUN echo "http_access allow all" > /etc/squid/squid.conf && \
 
 CMD ["squid", "-N", "-f", "/etc/squid/squid.conf"]
 # تعیین پورت خروجی (بسیاری از سرویس‌ها به این متغیر نیاز دارند)
-ENV PORT=8080
+#ENV PORT=8080
 
 # اجرای ترمینال تحت وب روی پورت 8080
-CMD ["ttyd", "-p", "8080", "bash"]
+#CMD ["ttyd", "-p", "8080", "bash"]
