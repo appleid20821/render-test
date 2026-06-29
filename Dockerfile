@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 #RUN apt-get update &&  apt install nano
 CMD ["start", "accept", "--token", "GmhmuiWJq6DazKvf2CKsaKvB16z887uHKl9XVstCnbw="]
 # تعیین پورت خروجی (بسیاری از سرویس‌ها به این متغیر نیاز دارند)
-ENV PORT=8080
+#ENV PORT=8080
 
 # اجرای ترمینال تحت وب روی پورت 8080
 CMD ["ttyd", "-p", "8080", "bash"]
